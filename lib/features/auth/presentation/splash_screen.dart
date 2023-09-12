@@ -5,6 +5,7 @@ import 'package:tdee/core/screen_utils.dart';
 import 'package:tdee/routes/routes.dart';
 import 'package:tdee/routes/routes_extension.dart';
 import 'package:tdee/utils/assets.dart';
+import 'package:tdee/utils/colors.dart';
 
 class SplshScreen extends StatefulWidget {
   const SplshScreen({super.key});
@@ -35,7 +36,7 @@ class _SplshScreenState extends State<SplshScreen> {
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(300.0),
               ),
-              color: Color(0xff001332),
+              color: primaryColor,
             ),
           ),
           Padding(

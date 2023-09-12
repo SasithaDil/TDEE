@@ -15,3 +15,10 @@ const MaterialColor primaryColor = MaterialColor(
     900: Color(0xff001332),
   },
 );
+
+
+class AppColors{
+  //Gender select button colors
+  static const innactiveColor = Colors.white;
+  static const activeColor = Colors.grey;
+}

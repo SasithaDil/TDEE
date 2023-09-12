@@ -54,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           buttonText: "Male",
                           icon: Icons.male,
                           bgColor: state.selectedGender == Gender.male
-                              ? Colors.grey
-                              : Colors.white,
+                              ? AppColors.activeColor
+                              : AppColors.innactiveColor,
                         ),
                         CustomGenderButton(
                           onPressed: () {
@@ -65,8 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           buttonText: "Female",
                           icon: Icons.female,
                           bgColor: state.selectedGender == Gender.female
-                              ? Colors.grey
-                              : Colors.white,
+                              ? AppColors.activeColor
+                              : AppColors.innactiveColor,
                         ),
                       ],
                     );
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       "Calculate",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.innactiveColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 25.0,
                       ),
