@@ -80,15 +80,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: "Age",
                   keyboardType: TextInputType.number,
                 ),
-                CustomTextField(
-                  controller: weightTextController,
-                  text: "Weight",
-                  keyboardType: TextInputType.number,
-                ),
-                CustomTextField(
-                  controller: heightTextController,
-                  text: "Height",
-                  keyboardType: TextInputType.number,
+                Column(
+                  children: [
+                    CustomTextField(
+                      leadingTextClicked: () {},
+                      controller: weightTextController,
+                      text: "Weight",
+                      keyboardType: TextInputType.number,
+                      isVisible: true,
+                      leadingSuffixText: "Kg",
+                      trailingSuffixText: "Lb",
+                      leadingColor: primaryColor,
+                    ),
+                    CustomTextField(
+                      trailingTextClicked: () {},
+                      controller: heightTextController,
+                      text: "Height",
+                      keyboardType: TextInputType.number,
+                      isVisible: true,
+                      leadingSuffixText: "cm",
+                      trailingSuffixText: "ft",
+                      trailingColor: AppColors.innactiveColor,
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: context.defaultPadding * 2,
