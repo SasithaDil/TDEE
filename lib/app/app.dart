@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tdee/features/home/logic/change_unit/change_unit_cubit.dart';
 import 'package:tdee/features/home/logic/gender_select_cubit/gender_select_cubit.dart';
 import 'package:tdee/routes/routes.dart' as router;
 import 'package:tdee/utils/colors.dart';
@@ -18,7 +19,10 @@ class _AppState extends State<App> {
       providers: [
         BlocProvider<GenderSelectCubit>(
           create: (context) => GenderSelectCubit(),
-        )
+        ),
+        BlocProvider<ChangeUnitCubit>(
+          create: (context) => ChangeUnitCubit(),
+        ),
       ],
       child: MaterialApp(
           title: 'TDEE Calculator',

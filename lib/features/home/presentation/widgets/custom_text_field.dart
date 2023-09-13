@@ -62,8 +62,8 @@ class CustomTextField extends StatelessWidget {
                           child: Text(
                             leadingSuffixText ?? "",
                             style: TextStyle(
-                                color:
-                                    leadingTextColor ?? AppColors.innactiveColor),
+                                color: leadingTextColor ??
+                                    AppColors.innactiveColor),
                           ),
                         ),
                       ),
@@ -73,14 +73,16 @@ class CustomTextField extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          color: trailingColor ?? AppColors.innactiveColor,
+                          color: trailingColor ?? primaryColor,
                         ),
                         width: context.mQWidth * 0.12,
+                        height: context.mQWidth * 0.12,
                         child: Center(
                           child: Text(
                             trailingSuffixText ?? "",
                             style: TextStyle(
-                              color: trailingTextColor ?? AppColors.activeColor,
+                              color:
+                                  trailingTextColor ?? AppColors.innactiveColor,
                             ),
                           ),
                         ),

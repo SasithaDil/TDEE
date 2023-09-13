@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:tdee/core/screen_utils.dart';
 import 'package:tdee/enums/selected_gender.dart';
+import 'package:tdee/enums/selected_unit.dart';
+import 'package:tdee/features/home/logic/change_unit/change_unit_cubit.dart';
 import 'package:tdee/features/home/logic/gender_select_cubit/gender_select_cubit.dart';
 import 'package:tdee/features/home/presentation/widgets/custom_gender_button.dart';
 import 'package:tdee/features/home/presentation/widgets/custom_text_field.dart';
@@ -20,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController ageTextController = TextEditingController();
   final TextEditingController weightTextController = TextEditingController();
   final TextEditingController heightTextController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,17 +83,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Column(
                   children: [
-                    CustomTextField(
-                      leadingTextClicked: () {},
-                      controller: weightTextController,
-                      text: "Weight",
-                      keyboardType: TextInputType.number,
-                      isVisible: true,
-                      leadingSuffixText: "Kg",
-                      trailingSuffixText: "Lb",
-                      leadingColor: primaryColor,
+                    BlocBuilder<ChangeUnitCubit, ChangeUnitInitial>(
+                      builder: (context, weightState) {
+                        return CustomTextField(
+                          leadingTextClicked: () {
+                            BlocProvider.of<ChangeUnitCubit>(context)
+                                .selectKg();
+                          },
+                          trailingTextClicked: () {
+                            BlocProvider.of<ChangeUnitCubit>(context)
+                                .selectLb();
+                          },
+                          controller: weightTextController,
+                          text: "Weight",
+                          keyboardType: TextInputType.number,
+                          isVisible: true,
+                          leadingSuffixText: "Kg",
+                          trailingSuffixText: "Lb",
+                          trailingTextColor:
+                              weightState.weightUnit == WeightUnit.lb
+                                  ? AppColors.innactiveColor
+                                  : AppColors.activeColor,
+                          trailingColor: weightState.weightUnit == WeightUnit.lb
+                              ? primaryColor
+                              : AppColors.innactiveColor,
+                          leadingTextColor:
+                              weightState.weightUnit == WeightUnit.kg
+                                  ? AppColors.innactiveColor
+                                  : AppColors.activeColor,
+                          leadingColor: weightState.weightUnit == WeightUnit.kg
+                              ? primaryColor
+                              : AppColors.innactiveColor,
+                        );
+                      },
                     ),
                     CustomTextField(
+                      leadingTextClicked: () {},
                       trailingTextClicked: () {},
                       controller: heightTextController,
                       text: "Height",
