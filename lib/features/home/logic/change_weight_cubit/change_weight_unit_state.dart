@@ -1,4 +1,4 @@
-part of 'change_unit_cubit.dart';
+part of 'change_weight_unit_cubit.dart';
 
 abstract class ChangeUnitState extends Equatable {
   const ChangeUnitState();
@@ -8,7 +8,7 @@ abstract class ChangeUnitState extends Equatable {
 }
 
 class ChangeUnitInitial extends ChangeUnitState {
-  final WeightUnit weightUnit;
+  final Units weightUnit;
 
   const ChangeUnitInitial({required this.weightUnit});
   @override

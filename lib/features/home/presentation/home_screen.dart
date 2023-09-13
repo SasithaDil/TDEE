@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tdee/core/screen_utils.dart';
 import 'package:tdee/enums/selected_gender.dart';
 import 'package:tdee/enums/selected_unit.dart';
-import 'package:tdee/features/home/logic/change_unit/change_unit_cubit.dart';
+import 'package:tdee/features/home/logic/change_height_cubit/change_height_cubit.dart';
+import 'package:tdee/features/home/logic/change_weight_cubit/change_weight_unit_cubit.dart';
 import 'package:tdee/features/home/logic/gender_select_cubit/gender_select_cubit.dart';
 import 'package:tdee/features/home/presentation/widgets/custom_gender_button.dart';
 import 'package:tdee/features/home/presentation/widgets/custom_text_field.dart';
@@ -100,33 +101,52 @@ class _HomeScreenState extends State<HomeScreen> {
                           isVisible: true,
                           leadingSuffixText: "Kg",
                           trailingSuffixText: "Lb",
-                          trailingTextColor:
-                              weightState.weightUnit == WeightUnit.lb
-                                  ? AppColors.innactiveColor
-                                  : AppColors.activeColor,
-                          trailingColor: weightState.weightUnit == WeightUnit.lb
+                          trailingTextColor: weightState.weightUnit == Units.lb
+                              ? AppColors.innactiveColor
+                              : AppColors.activeColor,
+                          trailingColor: weightState.weightUnit == Units.lb
                               ? primaryColor
                               : AppColors.innactiveColor,
-                          leadingTextColor:
-                              weightState.weightUnit == WeightUnit.kg
-                                  ? AppColors.innactiveColor
-                                  : AppColors.activeColor,
-                          leadingColor: weightState.weightUnit == WeightUnit.kg
+                          leadingTextColor: weightState.weightUnit == Units.kg
+                              ? AppColors.innactiveColor
+                              : AppColors.activeColor,
+                          leadingColor: weightState.weightUnit == Units.kg
                               ? primaryColor
                               : AppColors.innactiveColor,
                         );
                       },
                     ),
-                    CustomTextField(
-                      leadingTextClicked: () {},
-                      trailingTextClicked: () {},
-                      controller: heightTextController,
-                      text: "Height",
-                      keyboardType: TextInputType.number,
-                      isVisible: true,
-                      leadingSuffixText: "cm",
-                      trailingSuffixText: "ft",
-                      trailingColor: AppColors.innactiveColor,
+                    BlocBuilder<ChangeHeightCubit, ChangeHeightInitial>(
+                      builder: (context, heightState) {
+                        return CustomTextField(
+                          leadingTextClicked: () {
+                             BlocProvider.of<ChangeHeightCubit>(context)
+                                .selectCm();
+                          },
+                          trailingTextClicked: () {
+                            BlocProvider.of<ChangeHeightCubit>(context)
+                                .selectFt();
+                          },
+                          controller: heightTextController,
+                          text: "Height",
+                          keyboardType: TextInputType.number,
+                          isVisible: true,
+                          leadingSuffixText: "cm",
+                          trailingSuffixText: "ft",
+                          trailingTextColor: heightState.heightUnit == Units.ft
+                              ? AppColors.innactiveColor
+                              : AppColors.activeColor,
+                          trailingColor: heightState.heightUnit == Units.ft
+                              ? primaryColor
+                              : AppColors.innactiveColor,
+                          leadingTextColor: heightState.heightUnit == Units.cm
+                              ? AppColors.innactiveColor
+                              : AppColors.activeColor,
+                          leadingColor: heightState.heightUnit == Units.cm
+                              ? primaryColor
+                              : AppColors.innactiveColor,
+                        );
+                      },
                     ),
                   ],
                 ),

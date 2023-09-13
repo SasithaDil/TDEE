@@ -1,4 +1,6 @@
-enum WeightUnit {
+enum Units {
   kg,
   lb,
+  cm,
+  ft
 }
